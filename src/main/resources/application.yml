@@ -1,0 +1,37 @@
+
+server:
+  port: 8080
+   
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/mdd?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+#
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:com/mdd/mapper/**/*.xml
+  type-aliases-package: com.mdd.entity
+   
+#showSql
+logging:
+  level:
+    com:
+      mdd:
+        dao:
+          mapper : debug
